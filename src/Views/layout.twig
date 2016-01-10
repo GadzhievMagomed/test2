@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="reviewsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="http://{{ app.request.host }}/assets/css/app.css">
+</head>
+<body>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<script src="http://{{ app.request.host }}/assets/js/jquery.min.js"></script>
+<script src="http://{{ app.request.host }}/assets/js/bootstrap.min.js"></script>
+<script src="http://{{ app.request.host }}/assets/js/angular.min.js"></script>
+<script src="http://{{ app.request.host }}/assets/js/ui-bootstrap.min.js"></script>
+<script src="http://{{ app.request.host }}/assets/js/app.js"></script>
+
+<script>
+    var userIp = "{{ user_ip }}";
+</script>
+
+
+
+
+</body>
+</html>

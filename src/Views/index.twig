@@ -1,0 +1,88 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="container" data-ng-controller="MainCtrl">
+
+        <div class="blog-header">
+            <h1 class="blog-title">Reviews</h1>
+        </div>
+
+        <div class="row" style="margin-bottom: 20px">
+
+            <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="text" class="form-control" data-ng-model="newReviewName">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Text</label>
+                        <textarea class="form-control" data-ng-model="newReviewText"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default" data-ng-click="newReview()">Отправить</button>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 50px">
+            <h3>Сортировка</h3>
+            <div class="col-md-6">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-ng-click="editSortType('publish_date')">
+                        По дате
+                    </button>
+                    <button type="button" class="btn btn-default" data-ng-click="editSortType('likes')">
+                        По лайкам
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-ng-click="editSortReverse('')">
+                        Прямая
+                    </button>
+                    <button type="button" class="btn btn-default" data-ng-click="editSortReverse('desc')">
+                        Обратная
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12 blog-main">
+                <div class="col-md-4" data-ng-repeat="review in reviews | orderBy:sortType:sortReverse">
+                    <div class="panel panel-default"  style="height: 250px">
+                        <div class="panel-heading">
+                            <a href="http://{{ app.request.host }}/[[ review.id ]]">[[ review.name ]] ([[ review.publish_date ]])</a>
+                        </div>
+                        <div class="panel-body">
+                            [[ review.text ]]
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-3">
+                                    [[ review.likes_count ]]
+                                </div>
+                                <div class="col-md-3" data-ng-if="review.can_like">
+                                    <button class="btn btn-success" data-ng-click="likeAdd(review.id)">
+                                        <i data-ng-click="likeAdd(review.id)" class="glyphicon glyphicon-thumbs-up"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}

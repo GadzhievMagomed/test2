@@ -1,0 +1,31 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ curr_review.name }} {{ next_review.id }}</h1>
+
+            </div>
+            <div class="col-md-12">
+                {{ curr_review.text }}
+            </div>
+            <div class="col-md-12">
+                {% if(last_review.id) %}
+                    <a href="http://{{ app.request.host }}/{{ last_review.id }}">Last</a>
+                {% endif %}
+                {% if(next_review.id) %}
+                    <a href="http://{{ app.request.host }}/{{ next_review.id }}">Next</a>
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+{% endblock %}

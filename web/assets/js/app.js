@@ -50,7 +50,11 @@ reviewsApp.controller('MainCtrl', function($scope, $http) {
       'name': $scope.newReviewName,
       'text': $scope.newReviewText
     }).success(function(response) {
-      return updateReview();
+      if (needRedirectAfterAddReview) {
+        return window.location = '/';
+      } else {
+        return updateReview();
+      }
     });
   };
 });

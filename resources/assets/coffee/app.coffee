@@ -52,7 +52,10 @@ reviewsApp.controller('MainCtrl', ($scope, $http) ->
   $scope.newReview = () ->
     $http.post('/ajax/add_review', {'name': $scope.newReviewName, 'text': $scope.newReviewText}).success((response) ->
 
-      updateReview()
+      if needRedirectAfterAddReview
+        window.location = '/'
+      else
+        updateReview()
 
     )
 

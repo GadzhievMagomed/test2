@@ -8,6 +8,7 @@ $app->get('/', function (Application $app) {
     $data = [
         'app' => $app,
         'user_ip' => $_SERVER['REMOTE_ADDR'],
+        'show_grid' => true,
     ];
 
     $review_repository = $app->em->getRepository('Models\Review');
@@ -17,6 +18,20 @@ $app->get('/', function (Application $app) {
     return $app->twig->render('index.twig', $data);
 
 });
+
+$app->get('/add', function (Application $app) {
+
+    $data = [
+        'app' => $app,
+        'user_ip' => $_SERVER['REMOTE_ADDR'],
+        'show_grid' => false,
+    ];
+
+    return $app->twig->render('index.twig', $data);
+
+});
+
+
 
 $app->get('/{id}', function (Application $app, $id) {
     $review_repository = $app->em->getRepository('Models\Review');
